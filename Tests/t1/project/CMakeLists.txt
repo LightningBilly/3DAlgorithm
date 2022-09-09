@@ -1,0 +1,6 @@
+include_directories(../../../commonFunc/testPackage)
+message(${PROJECT_BINARY_DIR}/testPackage/Release/libpackage_shared.lib)
+set(hello_so ${PROJECT_BINARY_DIR}/testPackage/Release/libpackage_shared.lib)
+message("88 ${hello_so}")
+add_executable(main main.cpp)
+target_link_libraries(main ${hello_so})
