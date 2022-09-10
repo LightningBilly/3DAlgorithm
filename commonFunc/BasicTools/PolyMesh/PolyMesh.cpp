@@ -1,4 +1,4 @@
-﻿#include "PolyMesh.h"
+﻿#include "PolyMesh/PolyMesh.h"
 #include "assert.h"
 #include <sstream>
 

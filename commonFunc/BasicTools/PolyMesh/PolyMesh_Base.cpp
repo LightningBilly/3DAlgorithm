@@ -1,4 +1,4 @@
-#include "PolyMesh_Base.h"
+#include "PolyMesh/PolyMesh_Base.h"
 
 namespace acamcad {
 namespace polymesh {

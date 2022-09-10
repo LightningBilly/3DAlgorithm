@@ -1,5 +1,5 @@
-#include "PolyMesh.h"
-#include "PolyMeshIterators.h"
+#include "PolyMesh/PolyMesh.h"
+#include "PolyMesh/PolyMeshIterators.h"
 
 namespace acamcad {
 namespace polymesh {
