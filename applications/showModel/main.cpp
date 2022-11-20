@@ -12,7 +12,8 @@ using namespace std;
 
 #define  ColoredVertex(c,v) do{ glColor3fv(c); glVertex3fv(v); }while(0)
 
-char *path = "D:/selfad/3DAlgorithm/applications/showModel/d.txt";
+// char *path = "D:/selfad/3DAlgorithm/applications/showModel/d.txt";
+char *path = "D:/selfad/3DAlgorithm/applications/showModel/Bunny_head.obj";
 
 void key_callback(GLFWwindow * window, int key, int scancode, int action, int mode)
 {
@@ -197,15 +198,15 @@ int main(void) {
     cal_mean_curvature(mesh, vertexLAR, meanCur, absMeanCur);
     cal_gaussian_curvature(mesh, vertexLAR, gaussianCur);
     for (auto v : meanCur) {
-        cout << v << endl;
+        // cout << v << endl;
     }
-    // mesh->scale(120);
+    mesh->scale(0.2);
     double m = *max_element(meanCur.begin(), meanCur.end());
     double mi = *min_element(meanCur.begin(), meanCur.end());
     // sort(meanCur.begin(), meanCur.end());
     for (int i = 0; i < meanCur.size(); i++) {
         meanCur[i] = (meanCur[i] - mi) * 1000 / (m - mi);
-        cout << meanCur[i] << endl;
+        // cout << meanCur[i] << endl;
     }
     cout << mi << endl;
     //return 0;
@@ -213,7 +214,7 @@ int main(void) {
     // sort(meanCur.begin(), meanCur.end());
     for (int i = 0; i < absMeanCur.size(); i++) {
         absMeanCur[i] = absMeanCur[i] * 1000 / m;
-        cout << absMeanCur[i] << endl;
+        // cout << absMeanCur[i] << endl;
     }
 
     //return 0;
