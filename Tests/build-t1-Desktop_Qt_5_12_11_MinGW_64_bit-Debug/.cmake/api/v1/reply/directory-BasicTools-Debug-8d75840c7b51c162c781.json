@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "BasicTools",
+		"source" : "D:/selfad/3DAlgorithm/commonFunc/BasicTools"
+	}
+}

@@ -1,0 +1,2 @@
+C:\Qt\Qt5.12.11\Tools\mingw730_64\bin\ar.exe qc libBasicTools.a CMakeFiles/BasicTools.dir/PolyMesh/IOManger.cpp.obj CMakeFiles/BasicTools.dir/PolyMesh/PolyMesh.cpp.obj CMakeFiles/BasicTools.dir/PolyMesh/PolyMeshIterators.cpp.obj CMakeFiles/BasicTools.dir/PolyMesh/PolyMesh_Base.cpp.obj
+C:\Qt\Qt5.12.11\Tools\mingw730_64\bin\ranlib.exe libBasicTools.a

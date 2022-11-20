@@ -1,0 +1,8 @@
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/BasicTools/CMakeFiles/BasicTools.dir
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/BasicTools/CMakeFiles/edit_cache.dir
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/BasicTools/CMakeFiles/rebuild_cache.dir
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/project/CMakeFiles/main.dir
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/project/CMakeFiles/edit_cache.dir
+D:/selfad/3DAlgorithm/Tests/build-t1-Desktop_Qt_5_12_11_MinGW_64_bit-Debug/project/CMakeFiles/rebuild_cache.dir

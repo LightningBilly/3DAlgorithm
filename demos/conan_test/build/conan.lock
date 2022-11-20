@@ -1,0 +1,52 @@
+{
+ "graph_lock": {
+  "nodes": {
+   "0": {
+    "options": "eigen:MPL2_only=False\nglad:extensions=''\nglad:gl_profile=compatibility\nglad:gl_version=3.3\nglad:gles1_version=None\nglad:gles2_version=None\nglad:glsc2_version=None\nglad:no_loader=False\nglad:shared=False\nglad:spec=gl\nglfw:shared=False\nglfw:vulkan_static=False",
+    "requires": [
+     "1",
+     "2",
+     "3"
+    ],
+    "path": "..\\conanfile.txt",
+    "context": "host"
+   },
+   "1": {
+    "ref": "eigen/3.4.0",
+    "options": "MPL2_only=False",
+    "package_id": "5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9",
+    "prev": "0",
+    "context": "host"
+   },
+   "2": {
+    "ref": "glad/0.1.36",
+    "options": "extensions=''\ngl_profile=compatibility\ngl_version=3.3\ngles1_version=None\ngles2_version=None\nglsc2_version=None\nno_loader=False\nshared=False\nspec=gl",
+    "package_id": "24ea8070e5ad8bf25abaabae3710a6681eb88e7e",
+    "prev": "0",
+    "modified": true,
+    "context": "host"
+   },
+   "3": {
+    "ref": "glfw/3.3.8",
+    "options": "shared=False\nvulkan_static=False",
+    "package_id": "d2bbd56c1f653d6cd1a2bcf499dd79bd0a930b61",
+    "prev": "0",
+    "modified": true,
+    "requires": [
+     "4"
+    ],
+    "context": "host"
+   },
+   "4": {
+    "ref": "opengl/system",
+    "options": "",
+    "package_id": "5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9",
+    "prev": "0",
+    "context": "host"
+   }
+  },
+  "revisions_enabled": false
+ },
+ "version": "0.4",
+ "profile_host": "[settings]\narch=x86_64\narch_build=x86_64\nbuild_type=Release\ncompiler=Visual Studio\ncompiler.runtime=MD\ncompiler.version=17\nos=Windows\nos_build=Windows\n[options]\n[build_requires]\n[env]\n"
+}

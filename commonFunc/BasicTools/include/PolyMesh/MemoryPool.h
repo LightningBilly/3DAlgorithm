@@ -23,7 +23,7 @@ namespace acamcad
 		void Reserve(size_t n);
 		// no ~T()
 		void fastClear();
-		void Clear();	//ÒÀ´Îµ÷ÓÃËùÓĞµÄÎö¹¹º¯Êı£¬È»ºó¹é»¹¿Õ¼ä
+		void Clear();	//ä¾æ¬¡è°ƒç”¨æ‰€æœ‰çš„ææ„å‡½æ•°ï¼Œç„¶åå½’è¿˜ç©ºé—´
 
 	private:
 		void newBlock();

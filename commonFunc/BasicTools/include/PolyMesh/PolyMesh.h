@@ -251,7 +251,7 @@ public:
     /// only reverses the inner halfedge of face, it will cause error in ordinary mesh
 	void reverse_face(MPolyFace* face);
 
-	/// Reverse a isolated face, also reverse it's boundary halfedge£¬return false for non-isolated
+	/// Reverse a isolated face, also reverse it's boundary halfedgeï¼Œreturn false for non-isolated
 	bool reverseIsolatedFace(MPolyFace* face);
 
 	/// Reverse all halfedge of a mesh
@@ -281,10 +281,10 @@ public:
 	/// try to avoid grids with poor angles when the isquality setting
 	MEdge* splitQuadrilateralTriangle(MPolyFace* face, bool isqulaty = false);
 
-	/// ½«ÊäÈëµÄ¶¥µãÁ¬½ÓÊäÈëÃæµÄÆäËû¶¥µã£¬½«Ãæ·Ö³É¶à¸öÈı½ÇĞÎ£¬¶ÔÓÚ·ÇÍ¹Çé¿ö£¬»áÓĞ·­×ª£¬²»»á¼ì²âµãÔÚ²»ÔÚ¶à±ßĞÎÉÏ¡£
+	/// å°†è¾“å…¥çš„é¡¶ç‚¹è¿æ¥è¾“å…¥é¢çš„å…¶ä»–é¡¶ç‚¹ï¼Œå°†é¢åˆ†æˆå¤šä¸ªä¸‰è§’å½¢ï¼Œå¯¹äºéå‡¸æƒ…å†µï¼Œä¼šæœ‰ç¿»è½¬ï¼Œä¸ä¼šæ£€æµ‹ç‚¹åœ¨ä¸åœ¨å¤šè¾¹å½¢ä¸Šã€‚
 	void SplitFaceWithSingleFaceVertex(MPolyFace* face, MVert* v_new);
 
-	/// ½«Ò»Ìõ±ßsplit£¬È»ºó½«ĞÂÉú³ÉµÄ¶¥µãÁ¬½ÓÏàÁÚÁ½¸öÃæµÄÆäËû¶¥µã£¬½«ÏàÁÚÁ½¸öÃæ·Ö³É¶à¸öÈı½ÇĞÎ£¬¶ÔÓÚ·ÇÍ¹Çé¿ö£¬»áÓĞ·­×ª
+	/// å°†ä¸€æ¡è¾¹splitï¼Œç„¶åå°†æ–°ç”Ÿæˆçš„é¡¶ç‚¹è¿æ¥ç›¸é‚»ä¸¤ä¸ªé¢çš„å…¶ä»–é¡¶ç‚¹ï¼Œå°†ç›¸é‚»ä¸¤ä¸ªé¢åˆ†æˆå¤šä¸ªä¸‰è§’å½¢ï¼Œå¯¹äºéå‡¸æƒ…å†µï¼Œä¼šæœ‰ç¿»è½¬
 	MVert* splitEdgeSplitPolygon(MEdge* edge);
 
 	bool is_collapse_ok(MHalfedge* he);
@@ -304,21 +304,21 @@ public:
 	MPolyFace* jointFaceRemoveEdge(MEdge* edge);
 
 
-	/// merge edge: ½«Ö»ÓÉ¶¥µã·Ö¸îµÄÁ½Ìõ±ßºÏ²¢Îª1Ìõ-----µ÷ÓÃjointEdgeRemoveVertex
+	/// merge edge: å°†åªç”±é¡¶ç‚¹åˆ†å‰²çš„ä¸¤æ¡è¾¹åˆå¹¶ä¸º1æ¡-----è°ƒç”¨jointEdgeRemoveVertex
 	MEdge* mergeEdge(MEdge* edge0, MEdge* edge1);
-	/// ½«Á½¸öÃæºÏ²¢³ÉÒ»¸öÃæ-----µ÷ÓÃjointFaceRemoveEdge
+	/// å°†ä¸¤ä¸ªé¢åˆå¹¶æˆä¸€ä¸ªé¢-----è°ƒç”¨jointFaceRemoveEdge
 	MPolyFace* mergeFace(MPolyFace* f0, MPolyFace* f1);
 
 
-	/// ¶¥µãºÏ²¢£¬Ö»Òª½«¶¥µãËùÓĞµÄ±ß¶¼ºÏ²¢µ½Ò»Æğ£¬Õâ¸öµã×ÔÈ»»áÉ¾µô£¬¹Ø¼üÊÇ¶à¸öµãÔõÃ´º¸½Ó
-	/// Ö÷ÒªÊÇµ÷ÓÃweldEdge£¬ÏÖÔÚµÄ¿ÉÄÜ»¹ÓĞÎÊÌâ
+	/// é¡¶ç‚¹åˆå¹¶ï¼Œåªè¦å°†é¡¶ç‚¹æ‰€æœ‰çš„è¾¹éƒ½åˆå¹¶åˆ°ä¸€èµ·ï¼Œè¿™ä¸ªç‚¹è‡ªç„¶ä¼šåˆ æ‰ï¼Œå…³é”®æ˜¯å¤šä¸ªç‚¹æ€ä¹ˆç„Šæ¥
+	/// ä¸»è¦æ˜¯è°ƒç”¨weldEdgeï¼Œç°åœ¨çš„å¯èƒ½è¿˜æœ‰é—®é¢˜
 	bool weldVertex(MVert* v_ori, MVert* v_tar, double tolerance = 1e-2);	
 
-	///½«Á½Ìõ±ßº¸½Ó³ÉÒ»Ìõ±ß£¬ÕâÁ½Ìõ±ß¶¼ÊÇ¶¥µãÇÒ¶Ëµã¿¿½ü£¬É¾³ıe0ºÍe0µÄ²»Óëe1¹«ÓÃµÄ¶Ëµã
+	///å°†ä¸¤æ¡è¾¹ç„Šæ¥æˆä¸€æ¡è¾¹ï¼Œè¿™ä¸¤æ¡è¾¹éƒ½æ˜¯é¡¶ç‚¹ä¸”ç«¯ç‚¹é è¿‘ï¼Œåˆ é™¤e0å’Œe0çš„ä¸ä¸e1å…¬ç”¨çš„ç«¯ç‚¹
 	bool weldEdge(MEdge* e0, MEdge* e1, double tolerance = 1e-2);	//it will deleat e0;
 
 
-	/// ¶¥µã·ÖÀë£¬½«Ò»¸ö²»ÊÇÁ÷ĞÎµÄµã·ÖÀë£¬Ìí¼ÓÁ÷ĞÎ×ÓÇøÓòÊıÄ¿µÄ¶¥µã-1¡£
+	/// é¡¶ç‚¹åˆ†ç¦»ï¼Œå°†ä¸€ä¸ªä¸æ˜¯æµå½¢çš„ç‚¹åˆ†ç¦»ï¼Œæ·»åŠ æµå½¢å­åŒºåŸŸæ•°ç›®çš„é¡¶ç‚¹-1ã€‚
 	bool separateSingleVert(MVert* vert);
 	bool separateSingleVert(MVert* vert, std::vector<MVert*>& new_vert_list);
 
@@ -368,7 +368,7 @@ private:
 //=====================================================================
 //=====================================================================
 	/// Combine two adjacent faces of an edge into one face
-	/// This function does not detect whether there is a problem with the input£¬Called by jointFaceRemoveEdge
+	/// This function does not detect whether there is a problem with the inputï¼ŒCalled by jointFaceRemoveEdge
 	MPolyFace* jointFaceRemoveEdge(MPolyFace* f0, MPolyFace* f1, MEdge* edge);
 };
 

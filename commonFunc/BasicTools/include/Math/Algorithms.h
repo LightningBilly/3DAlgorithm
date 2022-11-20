@@ -60,10 +60,10 @@ inline double distPointTriangleSquared(const MVector3& p,
     double inv_v1v2_2 = double(1.0) / v1v2.normSq();
 
     MVector3 v0p = p - v0;
-    MVector3 t = v0p.cross(n);              //Í¶Ó°µ½Æ½Ãæ²¢ÒÀ·¨ÏòĞı×ª90¶È
+    MVector3 t = v0p.cross(n);              //æŠ•å½±åˆ°å¹³é¢å¹¶ä¾æ³•å‘æ—‹è½¬90åº¦
     double s01, s02, s12;
-    double a = (t.dot(v0v2)) * -invD;       //Í¶Ó°µãÓëv0v2µÄ¹ØÏµ£¬a<0£¬ ÔÚv0v2ÍâÃæ
-    double b = (t.dot(v0v1)) * invD;        //Í¶Ó°µãÓëv0v1µÄ¹ØÏµ£¬b<0£¬ ÔÚv0v1ÍâÃæ
+    double a = (t.dot(v0v2)) * -invD;       //æŠ•å½±ç‚¹ä¸v0v2çš„å…³ç³»ï¼Œa<0ï¼Œ åœ¨v0v2å¤–é¢
+    double b = (t.dot(v0v1)) * invD;        //æŠ•å½±ç‚¹ä¸v0v1çš„å…³ç³»ï¼Œb<0ï¼Œ åœ¨v0v1å¤–é¢
 
 
     if (a < 0)
@@ -176,7 +176,7 @@ inline double distPointTriangleSquared(const MVector3& p,
     return (nearestPoint - p).normSq();
 }
 
-//Ïß¶ÎÓëÏß¶ÎµÄ×î½üµã
+//çº¿æ®µä¸çº¿æ®µçš„æœ€è¿‘ç‚¹
 inline double distLineLineSquared(const MVector3& _v00, const MVector3& _v01,
 	const MVector3& _v10, const MVector3& _v11,
 	MVector3& _min_v0, MVector3& _min_v1)
@@ -537,7 +537,7 @@ inline double distLineLineSquared(const MVector3& _v00, const MVector3& _v01,
 	return fabs(fSqrDist);
 }
 
-//Ïß¶ÎÓëÖ±ÏßµÄ×î½üµã£¬Ö±ÏßÓÃÁ½¸öµã±íÊ¾£¬ºóÃæÁ©¸ö²ÎÊıÊÇÖ±Ïß
+//çº¿æ®µä¸ç›´çº¿çš„æœ€è¿‘ç‚¹ï¼Œç›´çº¿ç”¨ä¸¤ä¸ªç‚¹è¡¨ç¤ºï¼Œåé¢ä¿©ä¸ªå‚æ•°æ˜¯ç›´çº¿
 inline double distLine_SLineSquared(const MVector3& _v00, const MVector3& _v01,
 	const MVector3& _v1, const MVector3& _v11,
 	MVector3& _min_v0, MVector3& _min_v1)
@@ -602,7 +602,7 @@ inline double distLine_SLineSquared(const MVector3& _v00, const MVector3& _v01,
 	return fabs(fSqrDist);
 }
 
-//Ö±ÏßÓëÆ½ÃæµÄ½»µã
+//ç›´çº¿ä¸å¹³é¢çš„äº¤ç‚¹
 inline bool intersection_Line_Plane(const MVector3& v, const MVector3& t, const MVector3& o, const MVector3& n, MVector3& pi)
 {
 	double tn = t.dot(n);
@@ -618,7 +618,7 @@ inline bool intersection_Line_Plane(const MVector3& v, const MVector3& t, const 
 	return true;
 }
 
-//ÅĞ¶ÏÒ»¸öµãÔÚÒ»¸öÃæµÄ·¨ÏòÃæ»¹ÊÇ·Ç·¨ÏòÃæ
+//åˆ¤æ–­ä¸€ä¸ªç‚¹åœ¨ä¸€ä¸ªé¢çš„æ³•å‘é¢è¿˜æ˜¯éæ³•å‘é¢
 inline bool pointPlane(const MVector3& p, const MVector3& v, MVector3& n)
 {
 	MVector3 vp = p - v;
@@ -634,7 +634,7 @@ inline bool pointPlane(const MVector3& p, const MVector3& v, const MVector3& d1,
 	return pointPlane(p,v,n);
 }
 
-//µãÊÇ·ñÔÚÒ»¸öÎŞÏŞÔ¶µÄ×¶ÄÚ£¬vÊÇ×¶µÄÆğµã£¬tÊÇ×¶µÄ·½Ïò£¬ ×¢ÒâtµÄË³Ğò£¬·¨ÏòÏòÄÚ¡£
+//ç‚¹æ˜¯å¦åœ¨ä¸€ä¸ªæ— é™è¿œçš„é”¥å†…ï¼Œvæ˜¯é”¥çš„èµ·ç‚¹ï¼Œtæ˜¯é”¥çš„æ–¹å‘ï¼Œ æ³¨æ„tçš„é¡ºåºï¼Œæ³•å‘å‘å†…ã€‚
 // 0 1
 // 3 2
 inline bool pointPyramid(const MVector3& p, const MVector3& v, const std::vector<MVector3>& t)

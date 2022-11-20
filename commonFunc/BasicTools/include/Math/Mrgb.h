@@ -2,13 +2,13 @@
 
 namespace acamcad {
 /**
-* Á½¸öÑÕÉ«ºÍÎÆÀí×ø±ê½Ó½üĞ¡ÓÚÕâ¸öÖµ£¬»á±»ÈÏÎªÊÇÍ¬Ò»¸öµã
+* ä¸¤ä¸ªé¢œè‰²å’Œçº¹ç†åæ ‡æ¥è¿‘å°äºè¿™ä¸ªå€¼ï¼Œä¼šè¢«è®¤ä¸ºæ˜¯åŒä¸€ä¸ªç‚¹
 */
 const float ColorThreshold = 0.001f;
 
 /**
-* The RGB is 0-255, ²»ÔÊĞíÊäÈëĞ¡ÓÚ0µÄÊı
-* The RGBf is 0-1; Ğ¡ÓÚ0µÄÊı»á±»ÉèÖÃÎª0£»
+* The RGB is 0-255, ä¸å…è®¸è¾“å…¥å°äº0çš„æ•°
+* The RGBf is 0-1; å°äº0çš„æ•°ä¼šè¢«è®¾ç½®ä¸º0ï¼›
 */
 
 struct MRGB
@@ -184,7 +184,7 @@ inline MRGBf RGB_to_RGBF(MRGB& color)
 
 inline MRGB RGBF_to_RGB(MRGBf& color)
 {
-	return(MRGB(unsigned int(color.r * 255), unsigned int(color.g * 255), unsigned int(color.b * 255)));
+    return(MRGB((unsigned int)(color.r * 255), (unsigned int)(color.g * 255), (unsigned int)(color.b * 255)));
 }
 
 inline MRGBAf RGBA_to_RGBAF(MRGBA& color)
@@ -194,7 +194,7 @@ inline MRGBAf RGBA_to_RGBAF(MRGBA& color)
 
 inline MRGBA RGBAF_to_RGBA(MRGBAf& color)
 {
-	return(MRGBA(unsigned int(color.r * 255), unsigned int(color.g * 255), unsigned int(color.b * 255), unsigned int(color.a * 100)));
+    return(MRGBA((unsigned int)(color.r * 255), (unsigned int)(color.g * 255), (unsigned int)(color.b * 255), (unsigned int)(color.a * 100)));
 }
 
 /**

@@ -281,7 +281,7 @@ private:
 
 	MVector3 normal_;		/* face normal */
 	int polynum_;			/* number of vertices in the face */
-	int material_index_;	/* material index, 暂时替代OpenMesh中的texindex */
+	int material_index_;	/* material index, 鏆傛椂鏇夸唬OpenMesh涓殑texindex */
 	float color_[4];
 
 public:
