@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(ARAPDeformation)
+project(MVCParameterization)
 
 
-add_definitions(-DFILE_ROOT="${ALGORITHM_ROOT_DIR}/ARAPDeformation")
+add_definitions(-DFILE_ROOT="${ALGORITHM_ROOT_DIR}/MVCParameterization")
 
 # 设置依赖库lib文件
 set(BasicTools_so ${PROJECT_BINARY_DIR}/BasicTools/Release/BasicTools.lib) # 设置所需要的lib

@@ -449,8 +449,8 @@ bool PolyMesh::isBoundary(const MHalfedge *halfedge) const {
 
 void PolyMesh::scale(float s) {
     for (int i = 0; i < vertices_.size(); i++) {
-        vertices_[i]->setPosition(vertices_[i]->position()[0] / s, vertices_[i]->position()[1] / s,
-                                  vertices_[i]->position()[2] / s);
+        vertices_[i]->setPosition(vertices_[i]->position()[0] / s-0.5, vertices_[i]->position()[1] / s-0.5,
+                                  vertices_[i]->position()[2] / s-0.5);
     }
 }
 
@@ -515,7 +515,7 @@ void PolyMesh::Draw(double angx, double angy, vector<double> &meanCur) {
     int i = 0;
     for (auto face: polygons_)         //循环遍历face信息
     {
-        // break;
+        break;
         i++;
 
         glBegin(GL_TRIANGLES);
@@ -526,25 +526,28 @@ void PolyMesh::Draw(double angx, double angy, vector<double> &meanCur) {
             //glTexCoord2dv(texcoord[faceIndex->texcoord[0]].Data);
             auto rgb = getRGB(meanCur[v->index()]);
             //auto rgb = getRGB(i%1000);
-            glColor3f(rgb[0], rgb[1], rgb[2]);
+            // glColor3f(rgb[0], rgb[1], rgb[2]);
             double x = v->position().x(), y = v->position().y(), z = v->position().z();
             pointTrance(x, y, z, angx, angy);
             glVertex3d(x, y, z);
         }
         glEnd();
     }
-    return;
-    /*
-     glColor3f(1, 0, 0);
 
-        glLineWidth(1);
-        glBegin(GL_LINES);
-        for (auto l : edges) {
-            glVertex3dv(points[l.p[0]].BackupData);
-            glVertex3dv(points[l.p[1]].BackupData);
+    
+    glColor3f(1, 0, 0);
+
+    glLineWidth(1);
+    glBegin(GL_LINES);
+    for (auto ed : edges_) {
+        for (int j = 0; j < 2; ++j) {
+            auto v = ed->getVert(j);
+            double x = v->position().x(), y = v->position().y(), z = v->position().z();
+            pointTrance(x, y, z, angx, angy);
+            glVertex3d(x, y, z);
         }
-        glEnd();
-        */
+    }
+    glEnd();
     /*
     glColor3f(0, 1, 0);
 
@@ -560,7 +563,7 @@ void PolyMesh::Draw(double angx, double angy, vector<double> &meanCur) {
     glEnd();
     */
 
-    glColor3f(0, 0, 1);
+    // glColor3f(0, 0, 1);
 /*
     glPointSize(5);
     glBegin(GL_POINTS);

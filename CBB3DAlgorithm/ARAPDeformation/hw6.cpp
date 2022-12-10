@@ -16,8 +16,6 @@
 #include<math.h>
 #include<algorithm>
 #include <fstream>
-// #include <unistd.h>
-#include <direct.h>
 using namespace acamcad;
 using namespace polymesh;
 using namespace std;
@@ -45,24 +43,9 @@ void calc_cot_weight(vector<double>& cots)
 
 void arap_deformation()
 {
-    /*
-    if (argc != 4)
-    {
-        std::cout << "========== Hw6 Usage  ==========\n";
-        std::cout << std::endl;
-        std::cout << "Input:	ACAM_mesh_HW6.exe	[model]	[fix vertex id] [move vertex id and position]\n";  //fix vertex id: number + vertex id ;move vertex id and position: number + id position
-        std::cout << "Input:	ACAM_mesh_HW6.exe	mesh.obj	fix_handle.txt	move_handle.txt\n";
-        std::cout << std::endl;
-        std::cout << "=================================================\n";
-        return;
-    }
-*/
     // 源文件路径
-    char buffer[500];
-    getcwd(buffer, 500);
-    printf("The current directory is: %s/../\n", buffer);
-    string mesh_path = buffer;
-    mesh_path += "/../src/hw6/Bunny_head.obj";
+    string mesh_path = string(FILE_ROOT) +"/src";
+    mesh_path += "/Bunny_head.obj";
     loadMesh(mesh_path, &mesh);
 
     //loadMesh("Bunny_head.obj",&mesh);
@@ -85,8 +68,8 @@ void arap_deformation()
     //set fix handle
     //set<int> handles_f = {12,505,381,712,296};
     set<int> handles_f;
-    string handle_fix = buffer;
-    handle_fix += "/../src/hw6/fix.txt";
+    string handle_fix = string(FILE_ROOT) + "/src";
+    handle_fix += "/fix.txt";
     ifstream fix_handle(handle_fix);
     int fix_num;
     fix_handle >> fix_num;
@@ -100,8 +83,8 @@ void arap_deformation()
     //set move handle
     //vector<int> handles_m = {652};
     //vector<MVector3> handles_m_pos = { MVector3(0.05,0.2,0.05) };
-    string handle_move = buffer;
-    handle_move += "/../src/hw6/move.txt";
+    string handle_move = string(FILE_ROOT) + "/src";
+    handle_move += "/move.txt";
     vector<int> handles_m;
     vector<MVector3> handles_m_pos;
     ifstream move_handle(handle_move);

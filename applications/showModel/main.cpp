@@ -13,7 +13,8 @@ using namespace std;
 #define  ColoredVertex(c,v) do{ glColor3fv(c); glVertex3fv(v); }while(0)
 
 // char *path = "D:/selfad/3DAlgorithm/applications/showModel/d.txt";
-char *path = "D:/selfad/3DAlgorithm/applications/showModel/Bunny_head.obj";
+// char* path = "D:/selfad/3DAlgorithm/CBB3DAlgorithm/MVCParameterization/src/Bunny_head.obj";
+char* path = "D:/selfad/3DAlgorithm/CBB3DAlgorithm/MVCParameterization/src/human.obj";
 
 void key_callback(GLFWwindow * window, int key, int scancode, int action, int mode)
 {
@@ -189,7 +190,6 @@ void cal_gaussian_curvature(PolyMesh* const mesh, const std::vector<double> &ver
 
 int main(void) {
     auto r = new OBJReader();
-    string writePath = "/Users/bytedance/CLionProjects/glTriangle/d1.txt";
     auto mesh = new PolyMesh();
     r->read(path, mesh);
     std::vector<double> meanCur, absMeanCur, gaussianCur;
@@ -200,7 +200,7 @@ int main(void) {
     for (auto v : meanCur) {
         // cout << v << endl;
     }
-    mesh->scale(0.2);
+    mesh->scale(124.0);
     double m = *max_element(meanCur.begin(), meanCur.end());
     double mi = *min_element(meanCur.begin(), meanCur.end());
     // sort(meanCur.begin(), meanCur.end());
@@ -226,7 +226,7 @@ int main(void) {
     if (!glfwInit())
         return -1;
     //创建窗口以及上下文
-    GLFWwindow* window = glfwCreateWindow(600, 600, "hello world", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(900, 900, "hello world", NULL, NULL);
     if (!window) {
         //创建失败会返回NULL
         glfwTerminate();
@@ -277,7 +277,7 @@ int main(void) {
         for (int i = 0, n = 1000; i < n; i++) {
             auto rgb = getRGB(i);
             glColor3f(rgb[0], rgb[1], rgb[2]);
-            glRectf(0.7, 1.0 * i / n - 0.2, 0.8, 1.0 * (i + 1) / n - 0.2);
+            // glRectf(0.7, 1.0 * i / n - 0.2, 0.8, 1.0 * (i + 1) / n - 0.2);
         }
         glFlush();
         // RevolveTriangle();

@@ -1,0 +1,6 @@
+tutte's 
+将坐标替换为MVC。
+
+先对公式进行移项。
+对于边界点来说就是wij 为1， b[i]为边界
+对于内部点来说就wij = (tan(a-1/2)+tan(a/2))/||vi-vj||, wii = sum(wij), b[i]=0

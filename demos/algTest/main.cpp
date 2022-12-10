@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include "ARAPDeformation/hw6.h"
+#include <MVCParameterization/hw7.h>
 #include<vector>
 #include<algorithm>
 using namespace std;
@@ -8,7 +8,7 @@ using namespace std;
 // using namespace acamcad::polymesh;
 
 int main() {
-	arap_deformation();
+	mvc_parameterization();
 	printf("ok\n");
 	return 0;
 }
