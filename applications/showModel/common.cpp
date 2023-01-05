@@ -1,5 +1,6 @@
 #include "common.h"
 #include <cmath>
+#include "GL/glew.h"
 
 void pointTrance(double& x, double& y, double& z, double angx, double angy) {
     double x1, y1, z1;
@@ -19,6 +20,19 @@ void pointTrance(double& x, double& y, double& z, double angx, double angy) {
     z = y1 * sin(xtheta) + z1 * cos(xtheta);
 }
 
-void ShowVTKLines(acamcad::VTK& vtk) {
-    
+void ShowVTKLines(acamcad::VTK& vtk, double angx, double angy) {
+
+
+    glLineWidth(1);
+    glBegin(GL_LINES);
+    for (int i = 0; i < vtk.lines.size(); i += 2) {
+        for (int j = 0; j < 2; ++j) {
+            glColor3f(1, 1.0 * i / vtk.lines.size(), j);
+            auto v = vtk.lines[i+j];
+            double x = v[0], y = v[1], z = v[2];
+            pointTrance(x, y, z, angx, angy);
+            glVertex3d(x, y, z);
+        }
+    }
+    glEnd();
 }

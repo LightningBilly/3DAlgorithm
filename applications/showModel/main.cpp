@@ -8,6 +8,8 @@
 #include <numeric>
 #include<algorithm>
 #include <corecrt_math_defines.h>
+#include<include/VTK/vtk.h>
+#include"common.h"
 using namespace std;
 
 #define  ColoredVertex(c,v) do{ glColor3fv(c); glVertex3fv(v); }while(0)
@@ -217,6 +219,9 @@ int main(void) {
         // cout << absMeanCur[i] << endl;
     }
 
+
+    acamcad::VTK vtk;
+    vtk.read_lines("D:/lines.vtk");
     //return 0;
 /*
     auto w = new OBJWriter();
@@ -273,12 +278,15 @@ int main(void) {
         glMatrixMode(GL_PROJECTION);
         glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        mesh->Draw(angy, angx, gaussianCur);
+        // mesh->Draw(angy, angx, gaussianCur);
         for (int i = 0, n = 1000; i < n; i++) {
             auto rgb = getRGB(i);
             glColor3f(rgb[0], rgb[1], rgb[2]);
             // glRectf(0.7, 1.0 * i / n - 0.2, 0.8, 1.0 * (i + 1) / n - 0.2);
         }
+
+        ShowVTKLines(vtk, angx, angy);
+
         glFlush();
         // RevolveTriangle();
 //        glColor3f(1,0,0);

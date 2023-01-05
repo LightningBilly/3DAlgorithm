@@ -12,8 +12,10 @@ int main() {
 
 	acamcad::VTK vtk;
 
-	// vtk.add_line(acamcad::MPoint3(), acamcad::MPoint3(1,1,1));
-	vtk.read_lines("D:/lines.vtk");
+	vtk.add_line(acamcad::MPoint3(), acamcad::MPoint3(0,0,1));
+	vtk.add_line(acamcad::MPoint3(), acamcad::MPoint3(1,0,0));
+	vtk.add_line(acamcad::MPoint3(), acamcad::MPoint3(0,1,0));
+	vtk.write_lines("D:/lines.vtk");
 	vtk.show_lines();
 	printf("num: %d\n", vtk.lines.size());
 	return 0;
