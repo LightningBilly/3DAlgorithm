@@ -3,6 +3,7 @@
 //
 
 #include "PolyMesh.h"
+#include "common.h"
 
 void MVert::adjustOutgoingHalfedge() {
     if (isIsolated())
@@ -453,27 +454,6 @@ void PolyMesh::scale(float s) {
                                   vertices_[i]->position()[2] / s-0.5);
     }
 }
-
-
-void pointTrance(double &x, double &y, double &z, double angx, double angy) {
-    double x1, y1, z1;
-    // y轴旋转
-    double ytheta = angy / 180 * 3.14;
-    // cout<<"trance - angy" << angx<<endl;
-    x1 = z * sin(ytheta) + x * cos(ytheta);
-    y1 = y;
-    z1 = z * cos(ytheta) - x * sin(ytheta);
-
-
-    // x轴旋转
-    double xtheta = angx / 180 * 3.14;
-
-    x = x1;
-    y = y1 * cos(xtheta) - z1 * sin(xtheta);
-    z = y1 * sin(xtheta) + z1 * cos(xtheta);
-}
-
-
 
 vector<double> getRGB(double i) {
     GLsizei r, g, b;
