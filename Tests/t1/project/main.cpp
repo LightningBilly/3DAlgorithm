@@ -1,22 +1,39 @@
 #include<stdio.h>
-#include <include/PolyMesh/IOManager.h>
-#include <include/VTK/vtk.h>
-#include <include/Math/MPoint3.h>
-using namespace acamcad::polymesh;
+#include "rigidrt.h"
+
+void checkType(int a) {
+	puts("int");
+}
+
+
+void checkType(double a) {
+	puts("double");
+}
+
+void checkType(float a) {
+	puts("float");
+}
+
+template<typename T>
+class M{
+public:
+	T v;
+	
+	T& operator()(int a, int b) {
+		printf("%d %d\n", a,b);
+
+		return v;
+	}
+};
+
+#define MT(type, typesuffix) using M##typesuffix=M<type>;
+
+MT(int, i)
+MT(double, d)
+MT(float, f)
+
 int main() {
-
-	printf("ok\n");
-	PolyMesh mesh;
-	loadMesh("D:/selfad/3DAlgorithm_build/t1/project/Release/alien.obj", &mesh);
-	printf("%d\n", mesh.numVertices());
-
-	acamcad::VTK vtk;
-
-	vtk.add_line(acamcad::MPoint3(), acamcad::MPoint3(0,0,1));
-	vtk.add_line(acamcad::MPoint3(), acamcad::MPoint3(1,0,0));
-	vtk.add_line(acamcad::MPoint3(), acamcad::MPoint3(0,1,0));
-	vtk.write_lines("D:/lines.vtk");
-	vtk.show_lines();
-	printf("num: %d\n", vtk.lines.size());
+	
+	testRYMatrix();
 	return 0;
 }
