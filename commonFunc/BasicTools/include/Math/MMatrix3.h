@@ -4,9 +4,11 @@
 #include "Massage.h"
 #include <vector>
 #include "Eigen/Core"
+#include <cmath>
 
 
 namespace acamcad {
+    const double pi = acos(-1);
     using Point = Eigen::Vector3d;
     class RigidRTMatrix {
     private:
@@ -15,12 +17,20 @@ namespace acamcad {
         
     public:
         
-        RigidRTMatrix(Point start, Point end) {
+        RigidRTMatrix(Point start, Point end, double theta) {
             Eigen::Vector3d v = end - start;
             assert(!v.isZero());
+            theta = angleMod(theta);
             // Point::Zero();
             v.normalize();
+            Eigen::Vector3d X = {1,0,0};
+            Eigen::Vector3d m = v.cross(X);
+            auto RY = GetRY(m);
+            // 将v 旋转至ZOX 平面。
+            auto vZOX = RY * v;
+            auto RX = GetRX(vZOX);
 
+            // auto 
         }
         
         RigidRTMatrix() {
@@ -40,6 +50,36 @@ namespace acamcad {
             return RY;
         }
 
+        // 给定ZOX平面上的单位M向量，将其旋转到X轴上。
+        Eigen::Matrix3d GetRX(Eigen::Vector3d m) {
+            assert(!m.isZero());
+            m.normalize();
+            Eigen::Matrix3d RX;
+            RX.setIdentity();
+            RX(0, 0) = m.x();
+            RX(0, 2) = m.z();
+            RX(2, 0) = -m.z();
+            RX(2, 2) = m.x();
+            return RX;
+        }
+
+        // 给定ZOX平面上的单位M向量，将其旋转到X轴上。
+        Eigen::Matrix3d GetXRotate(double theta) {
+            double rad = theta / 180 * pi;
+            Eigen::Matrix3d X;
+            X.setIdentity();
+            X(1, 1) = cos(rad);
+            X(1, 2) = sin(rad);
+            X(2, 1) = -sin(rad);
+            X(2, 2) = cos(rad);
+            return X;
+        }
+
+        double angleMod(double theta) {
+            while (theta < -180)theta += 360;
+            while (theta > 180)theta -= 360;
+            return theta;
+        }
 
         friend static RigidRTMatrix operator*(RigidRTMatrix& a, RigidRTMatrix& b) {
             RigidRTMatrix multi;

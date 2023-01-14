@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include "rigidrt.h"
+#include<cmath>
+#include<climits>
 
 void checkType(int a) {
 	puts("int");
@@ -33,7 +35,15 @@ MT(double, d)
 MT(float, f)
 
 int main() {
-	
-	testRYMatrix();
+
+	const double pi = acos(-1);
+	printf("%f\n", sin(270.0 / 180 * pi));
+	printf("%f\n", sin(double(270 - 360) / 180 * pi));
+	printf("%f\n", sin(888.89 / 180 * pi));
+	printf("%f\n", sin(double(888.89 - 360) / 180 * pi));
+	// testRYMatrix();
+	// testRXMatrix();
+	// testAngleMod();
+	testXRotate();
 	return 0;
 }
