@@ -4,8 +4,11 @@
 #include "Massage.h"
 #include <vector>
 #include "Eigen/Core"
+#include "Eigen/Geometry"
 #include <cmath>
+#include <iostream>
 
+using namespace std;
 
 namespace acamcad {
     const double pi = acos(-1);
@@ -16,21 +19,31 @@ namespace acamcad {
         Eigen::Vector3d trans;
         
     public:
-        
         RigidRTMatrix(Point start, Point end, double theta) {
+            cout << "generate RigidRTMatrix 2" << endl;
             Eigen::Vector3d v = end - start;
+            cout << "v:" << v << endl;
+            cout << "angle:" << theta << endl;
             assert(!v.isZero());
-            theta = angleMod(theta);
             // Point::Zero();
             v.normalize();
-            Eigen::Vector3d X = {1,0,0};
+            Eigen::Vector3d X(1,0,0);
             Eigen::Vector3d m = v.cross(X);
+            // todo m=0时特殊处理
+            if (m.isZero()) {
+                if (v.dot(X) > 0) m = { 0,1,0 }; // 直接等于Y轴
+                else m = { 0,-1,0 }; // 等于Y轴的反轴
+            }
+
             auto RY = GetRY(m);
             // 将v 旋转至ZOX 平面。
             auto vZOX = RY * v;
             auto RX = GetRX(vZOX);
 
-            // auto 
+            auto Xrotate = GetXRotate(theta);
+
+            mat = RY.transpose() * RX.transpose() * Xrotate * RX * RY;
+            cout << "mat create :" << mat << endl;
         }
         
         RigidRTMatrix() {
@@ -69,8 +82,8 @@ namespace acamcad {
             Eigen::Matrix3d X;
             X.setIdentity();
             X(1, 1) = cos(rad);
-            X(1, 2) = sin(rad);
-            X(2, 1) = -sin(rad);
+            X(1, 2) = -sin(rad);
+            X(2, 1) = sin(rad);
             X(2, 2) = cos(rad);
             return X;
         }
@@ -79,6 +92,10 @@ namespace acamcad {
             while (theta < -180)theta += 360;
             while (theta > 180)theta -= 360;
             return theta;
+        }
+
+        Point Trans(Point &a) {
+            return mat * a;
         }
 
         friend static RigidRTMatrix operator*(RigidRTMatrix& a, RigidRTMatrix& b) {

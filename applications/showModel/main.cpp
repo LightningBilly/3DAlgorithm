@@ -9,6 +9,7 @@
 #include<algorithm>
 #include <corecrt_math_defines.h>
 #include<include/VTK/vtk.h>
+#include<include/math/MMatrix3.h>
 #include"common.h"
 using namespace std;
 
@@ -221,8 +222,15 @@ int main(void) {
 
 
     acamcad::VTK vtk;
-    vtk.read_lines("D:/lines.vtk");
-    //return 0;
+    vtk.add_line(acamcad::MPoint3(0, 0, 0), acamcad::MPoint3(1, 1, 1));
+    vtk.add_line(acamcad::MPoint3(0, 0, 0), acamcad::MPoint3(1, 0, 0));
+    vtk.add_line(acamcad::MPoint3(0, 0, 0), acamcad::MPoint3(0, 1, 0));
+    vtk.add_line(acamcad::MPoint3(0, 0, 0), acamcad::MPoint3(0, 0, 1));
+    // vtk.read_lines("D:/lines.vtk");
+
+    // 点0.5,0,0.5 沿1，1，1旋转90度
+    acamcad::RigidRTMatrix rt(acamcad::Point(0, 0, 0), acamcad::Point(1, 1, 1), 90);
+    auto p = rt.Trans(acamcad::Point( 0.5, 0, 0.5 ));
 /*
     auto w = new OBJWriter();
     w->write(writePath, mesh);
@@ -286,6 +294,18 @@ int main(void) {
         }
 
         ShowVTKLines(vtk, angx, angy);
+
+        double px1=0.5, py1=0, pz1=0.5;
+        double px2=p.x(), py2=p.y(), pz2=p.z();
+        pointTrance(px1, py1, pz1, angx, angy);
+        pointTrance(px2, py2, pz2, angx, angy);
+        glPointSize(4);
+        glBegin(GL_POINTS);
+        glColor3f(1,0,0);
+        glVertex3f(px1, py1, pz1);
+        glColor3f(0, 1, 0);
+        glVertex3f(px2, py2, pz2);
+        glEnd();
 
         glFlush();
         // RevolveTriangle();

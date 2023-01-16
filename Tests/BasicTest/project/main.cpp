@@ -44,6 +44,7 @@ int main() {
 	// testRYMatrix();
 	// testRXMatrix();
 	// testAngleMod();
-	testXRotate();
+	// testXRotate();
+	testRotate();
 	return 0;
 }
