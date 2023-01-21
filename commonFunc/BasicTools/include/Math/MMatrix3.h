@@ -44,6 +44,8 @@ namespace acamcad {
 
             mat = RY.transpose() * RX.transpose() * Xrotate * RX * RY;
             cout << "mat create :" << mat << endl;
+
+            trans = (Eigen::Matrix3d::Identity() - mat) * start; // ´æ´¢×ÜÌåÎ»ÒÆ
         }
         
         RigidRTMatrix() {
@@ -95,12 +97,13 @@ namespace acamcad {
         }
 
         Point Trans(Point &a) {
-            return mat * a;
+            return mat * a + trans;
         }
 
         friend static RigidRTMatrix operator*(RigidRTMatrix& a, RigidRTMatrix& b) {
             RigidRTMatrix multi;
             multi.mat = a.mat * b.mat;
+            multi.trans = a.mat * b.trans + a.trans;
             return multi;
         }
     };

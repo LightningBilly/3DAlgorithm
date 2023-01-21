@@ -153,6 +153,10 @@ void testRotate() {
 		// ÑØ1,1,1Öá×ª90¶È
 		{0,0,0, 1,1,1, 90, 1,0,1},
 		{0,0,0, 1,1,1, -90, 1.24402, 0.666667,0.0893164},
+
+
+		{0,0,0, 1,2,3, 90, 1,0,1},
+		{1,1,1, 2,3,4, 90, 2,1,2},
 		
 	};
 	for (auto& t : tests) {
@@ -163,5 +167,42 @@ void testRotate() {
 		acamcad::Point p1 = rt.Trans(p);
 		cout << "p1: " << p1 << endl;
 	}
+	
+}
+
+
+void testMulti() {
+	puts("testRotate");
+	vector<vector<double>> tests = {
+		{1,0,0, 1,1,0, 180, 2,0,0},
+		{-1,0,0, -1,1,0, 180, 1.24402, 0.666667,0.0893164},
+
+
+		{1,0,0, 1,2,5, 55, 2,3,4},
+		{10,0,0, 3,-5,-6, 88, 1.24402, 0.666667,0.0893164},
+		
+	};
+	for (int i = 0; i < tests.size();i+=2) {
+		cout << "----" << endl;
+		auto& t = tests[i];
+		auto& t2 = tests[i + 1];
+		acamcad::RigidRTMatrix rt1(Eigen::Vector3d(t[0], t[1], t[2]), Eigen::Vector3d(t[3], t[4], t[5]), t[6]);
+		acamcad::Point p(t[7], t[8], t[9]);
+		acamcad::Point p1 = rt1.Trans(p);
+		cout << "p1: " << p1 << endl;
+
+		acamcad::RigidRTMatrix rt2(Eigen::Vector3d(t2[0], t2[1], t2[2]), Eigen::Vector3d(t2[3], t2[4], t2[5]), t2[6]);
+		acamcad::Point p2 = rt2.Trans(p1);
+		cout << "p2: " << p2 << endl;
+
+		cout << "multi app ----- " << endl;
+
+		auto rtmulti = rt2 * rt1;
+		acamcad::Point p3 = rtmulti.Trans(p);
+		cout << "p3: " << p3 << endl;
+
+	}	
+
+
 	
 }
