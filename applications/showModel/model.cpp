@@ -380,6 +380,7 @@ Vector3 ObjectModel::getPointWithLine(Vector3 start, Vector3 unitV) {
         // 判断点是否在三角形内
         if(ct<t &&PointinTriangle(A, B, C, start+(ct*unitV))){
             t=ct;
+            cout << "ppp: "<< p.points[0] << endl;
         }
     }
 

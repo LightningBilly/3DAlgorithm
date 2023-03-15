@@ -14,7 +14,7 @@ namespace acamcad {
     const double pi = acos(-1);
     using Point = Eigen::Vector3d;
     class RigidRTMatrix {
-    private:
+    public:
         Eigen::Matrix3d mat;
         Eigen::Vector3d trans;
         

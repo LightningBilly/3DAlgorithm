@@ -14,10 +14,12 @@
 using namespace std;
 
 #define  ColoredVertex(c,v) do{ glColor3fv(c); glVertex3fv(v); }while(0)
+PolyMesh* mesh;
 
 // char *path = "D:/selfad/3DAlgorithm/applications/showModel/d.txt";
 // char* path = "D:/selfad/3DAlgorithm/CBB3DAlgorithm/MVCParameterization/src/Bunny_head.obj";
-char* path = "D:/selfad/3DAlgorithm/CBB3DAlgorithm/MVCParameterization/src/human.obj";
+char* path = "D:/selfad/3DAlgorithm_build/lscm/build/Release/human_lscm.obj";
+//ObjectModel om(path);
 
 void key_callback(GLFWwindow * window, int key, int scancode, int action, int mode)
 {
@@ -55,6 +57,7 @@ void mouse_click(GLFWwindow * window, int button, int action, int mods) {
     sy = ypos;
     cout << xpos / 300 - 1 << "," << 1 - ypos / 300 << endl;
     cout << xpos << "," << ypos << endl;
+    //om.getPointWithLine(Vector3(xpos / 300 - 1, 1 - ypos / 300, 0), Vector3(0, 0, -1));
     moving = action;
 }
 
@@ -193,8 +196,9 @@ void cal_gaussian_curvature(PolyMesh* const mesh, const std::vector<double> &ver
 
 int main(void) {
     auto r = new OBJReader();
-    auto mesh = new PolyMesh();
+    mesh = new PolyMesh();
     r->read(path, mesh);
+    
     std::vector<double> meanCur, absMeanCur, gaussianCur;
     std::vector<double> vertexLAR;
     cal_local_ave_region(mesh, vertexLAR);
@@ -203,7 +207,7 @@ int main(void) {
     for (auto v : meanCur) {
         // cout << v << endl;
     }
-    mesh->scale(124.0);
+    mesh->scale(1);
     double m = *max_element(meanCur.begin(), meanCur.end());
     double mi = *min_element(meanCur.begin(), meanCur.end());
     // sort(meanCur.begin(), meanCur.end());
@@ -286,14 +290,14 @@ int main(void) {
         glMatrixMode(GL_PROJECTION);
         glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // mesh->Draw(angy, angx, gaussianCur);
+        mesh->Draw(angy, angx, gaussianCur);
         for (int i = 0, n = 1000; i < n; i++) {
             auto rgb = getRGB(i);
             glColor3f(rgb[0], rgb[1], rgb[2]);
-            // glRectf(0.7, 1.0 * i / n - 0.2, 0.8, 1.0 * (i + 1) / n - 0.2);
+            //glRectf(0.7, 1.0 * i / n - 0.2, 0.8, 1.0 * (i + 1) / n - 0.2);
         }
 
-        ShowVTKLines(vtk, angx, angy);
+        //ShowVTKLines(vtk, angx, angy);
 
         double px1=0.5, py1=0, pz1=0.5;
         double px2=p.x(), py2=p.y(), pz2=p.z();

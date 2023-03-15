@@ -17,6 +17,7 @@ add_subdirectory(../commonFunc/BasicTools ./BasicTools) # 包含A库
 add_subdirectory(Dijkstra) # 调用生成B库过程
 add_subdirectory(ARAPDeformation) # 调用生成B库过程
 add_subdirectory(MVCParameterization) # 调用生成B库过程
+add_subdirectory(coordinate)
 
 
 

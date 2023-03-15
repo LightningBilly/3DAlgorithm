@@ -1,14 +1,16 @@
 #include<stdio.h>
-#include <MVCParameterization/hw7.h>
+#include<iostream>
 #include<vector>
 #include<algorithm>
+#include<coordinate/CoordinateSystem.h>
+#include<tests/GeometryTest.h>
+#include<MVCParameterization/hw7.h>
 using namespace std;
-// #include "include/PolyMesh/IOManager.h"
-
-// using namespace acamcad::polymesh;
 
 int main() {
-	mvc_parameterization();
+	//coordinate_test();
+	cout << BasicToolsTest::PointProjectPlane_Test() << endl;
+	// mvc_parameterization();
 	printf("ok\n");
 	return 0;
 }

@@ -10,8 +10,8 @@ message("conan path: ${CONAN_LIBS}")
 
 add_subdirectory(../../commonFunc/BasicTools ./BasicTools)
 include_directories(../../commonFunc/BasicTools)
-message(${PROJECT_BINARY_DIR}/lib/BasicTools.lib)
-set(BasicTools_so ${PROJECT_BINARY_DIR}/lib/BasicTools.lib)
+message(${PROJECT_BINARY_DIR}/BasicTools/lib/BasicTools.lib)
+set(BasicTools_so ${PROJECT_BINARY_DIR}/BasicTools/lib/BasicTools.lib)
 message("88 ${BasicTools_so}")
 
 add_executable(${ProName} main.cpp model.cpp model.h BSpline.h BSpline.cpp PolyMesh.h PolyMesh.cpp IOManager.h IOManager.cpp common.h common.cpp)

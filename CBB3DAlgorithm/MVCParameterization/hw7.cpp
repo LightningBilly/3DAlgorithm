@@ -126,12 +126,12 @@ void mvc_parameterization()
     // 源文件路径
     string mesh_path = string(FILE_ROOT) +"/src";
     // mesh_path += "/Bunny_head.obj";
-    mesh_path += "/human.obj";
+    mesh_path += "/bunny.obj";
     loadMesh(mesh_path, &mesh);
     cout << FILE_A << endl;
     cout << mesh_path << endl;
 	MVCCoordinates(&mesh);
 	string out_mesh_path = string(FILE_ROOT) + "/src";
-	out_mesh_path += "/result_human.obj";
+	out_mesh_path += "/result_bunny.obj";
     writeMesh(out_mesh_path, &mesh);
 }

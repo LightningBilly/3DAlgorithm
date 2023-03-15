@@ -12,7 +12,10 @@ message("${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_BINARY_DIR}")
 # 找到需要的cpp代码
 file(GLOB_RECURSE CPP_FILES     
 ${CMAKE_CURRENT_SOURCE_DIR}/PolyMesh/*.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/Math/*.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/include/Math/*.h
+${CMAKE_CURRENT_SOURCE_DIR}/tests/*.h
+${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp
 )
 
 message("cpp_files: ${CPP_FILES}")
