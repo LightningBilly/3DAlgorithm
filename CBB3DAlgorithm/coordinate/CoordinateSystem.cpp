@@ -7,6 +7,7 @@
 #include <iostream>
 #include <Eigen/Sparse>
 #include <include/Math/Geometry.h>
+#include<assert.h>
 using namespace std;
 using namespace Eigen;
 
@@ -16,6 +17,7 @@ RigidRTMatrix GenerateCoordinate(const Point& p, const Point& line_start,
 	const Point& line_end, const Point& plane_normal, const Point& plane_point,
 	CoordinateOrient line_orient, CoordinateOrient normal_orient) {
 	cout << "GenerateCoordinate" << endl;
+	assert(abs(plane_normal.squaredNorm() - 1) < 1e-6);
 	RigidRTMatrix coord;
 	// 1.计算线段投影的单位向量。
 	Point project_line_start = line_start;
@@ -24,29 +26,33 @@ RigidRTMatrix GenerateCoordinate(const Point& p, const Point& line_start,
 	Point project_line_end = line_end;
 	BasicTools::PointProjectPlane(project_line_end, plane_point, plane_normal);
 	Point project_vec = (project_line_end - project_line_start).normalized();
-	assert(project_vec.squaredNorm() > 1e-6);
+	assert(project_vec.squaredNorm() > 1e-4);
+	cout <<( project_vec.squaredNorm() > 1e-4) << endl;
 
 	coord.mat.block<1, 3>(line_orient, 0) = project_vec;
+	// 2.根据输入要求确定坐标系的两个轴。
+	coord.mat.block<1, 3>(normal_orient, 0) = plane_normal;
+	// 3.根据已经确定的两轴计算剩下的一轴。
+	int left = CoordinateOrient::X + CoordinateOrient::Y + CoordinateOrient::Z;
+	left -= line_orient + normal_orient;
+	coord.mat.block<1, 3>(left, 0) = coord.mat.block<1, 3>((left + 1) % 3, 0).cross(coord.mat.block<1, 3>((left + 2) % 3, 0));
 
+	// 4.确定原点。
+	coord.trans = p;
 
-		// 2.根据输入要求确定坐标系的两个轴。
-		// 3.根据已经确定的两轴计算剩下的一轴。
-		// 4.确定原点。
-
-	return RigidRTMatrix();
+	return coord;
 }
 
-
-void coordinate_test()
-{
-	cout << "coordinate_test2" << endl;
-	Point p(0, 0, 0);
-	Point line_start(1,2,3);
-	Point line_end(7, 8, 9);
-	Point plane_normal(9, 8, 10);
-	Point plane_point(10, 10, 10);
-	CoordinateOrient line_orient = CoordinateOrient::X;
-	CoordinateOrient normal_orient = CoordinateOrient::Y;
-	GenerateCoordinate(p, line_start, line_end, plane_normal, plane_point,
-		line_orient, normal_orient);
+RigidRTMatrix Coordinate2RT(const RigidRTMatrix& coord) {
+	RigidRTMatrix res;
+	RigidRTMatrix RTO;
+	RTO.trans = -coord.trans;
+	RigidRTMatrix RTOInvers;
+	RTOInvers.trans = coord.trans;
+	RigidRTMatrix A;
+	A.mat = coord.mat.transpose();
+	res = A * RTO;
+	res = RTOInvers * res;
+	return res;
 }
+

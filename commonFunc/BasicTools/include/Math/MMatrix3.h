@@ -49,7 +49,7 @@ namespace acamcad {
         }
         
         RigidRTMatrix() {
-
+            mat.setIdentity();
         }
         
         // 给定YOX平面上的单位M向量，将其旋转到Y轴上。

@@ -16,6 +16,7 @@ RigidRTMatrix GenerateCoordinate(const Point& p, const Point& line_start,
 	const Point& line_end, const Point& plane_normal, const Point& plane_point,
 	CoordinateOrient line_orient, CoordinateOrient normal_orient);
 
-void coordinate_test();
+RigidRTMatrix Coordinate2RT(const RigidRTMatrix& coord);
+
 
 #endif //MESHWORK_COORDINATE_H
