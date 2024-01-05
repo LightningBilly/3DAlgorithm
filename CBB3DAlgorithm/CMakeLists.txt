@@ -18,6 +18,7 @@ add_subdirectory(Dijkstra) # 调用生成B库过程
 add_subdirectory(ARAPDeformation) # 调用生成B库过程
 add_subdirectory(MVCParameterization) # 调用生成B库过程
 add_subdirectory(coordinate)
+add_subdirectory(Fitting)
 
 
 
