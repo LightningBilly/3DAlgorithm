@@ -1,6 +1,3 @@
 include_directories(../../../commonFunc/BasicTools)
-message(${PROJECT_BINARY_DIR}/BasicTools/lib/BasicTools.lib)
-set(BasicTools_so ${PROJECT_BINARY_DIR}/BasicTools/lib/BasicTools.lib)
-message("88 ${BasicTools_so}")
 add_executable(main main.cpp rigidrt.h rigidrt.cpp)
 target_link_libraries(main ${BasicTools_so} ${CONAN_LIBS})

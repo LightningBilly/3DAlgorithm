@@ -15,3 +15,9 @@
 
 ## application
 利用CBB3DAlgorithm, commonFunc 做一些实际应用型综合的功能。
+
+
+# 编译运行
+
+1. 先在生成目录下运行 conan install “替换源代码目录”  --build missing
+2. cmake生成工程

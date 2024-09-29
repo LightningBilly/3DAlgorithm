@@ -39,4 +39,4 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 target_include_directories(${PROJECT_NAME} PUBLIC .) # 发布lib
 
-# conan install .. --build missing
+# conan install D:\selfad\alg_and_graph\3DAlgorithm\CBB3DAlgorithm --build missing

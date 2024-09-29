@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- XML声明,指定版本和编码 --> 
+<bookname> <!-- 根元素 --> 
+    <Connector connection:Timeout="20000" maxParameterCount="1000" port="8088" protocol="HTTP/1.1" redirectPort="8443"/><!--子元素Connector-->
+    <book> <!-- 子元素book -->
+        <name>C++ Primer</name>
+        <author>Stanley B. Lippman</author>
+        <price>59.00</price>
+    </book> 
+    <book>
+        <name>Head First Java</name>
+        <author>Kathy Sierra</author>
+        <price>35.99</price>
+    </book> 
+</bookname>

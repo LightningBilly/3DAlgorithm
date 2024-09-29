@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+
+using namespace std;
+
+# define PI acos(-1.0)
+const int M = 1e6+10;
+
+const double eps = 1e-6;
+
+int cmpDouble(double a, double b) {
+    if (fabs(a-b)< eps) return 0;
+    if (a<b) return -1;
+    return 1;
+}
+
+class Point {
+public:
+    int x, y;
+    Point(int a, int b):x(a), y(b){}
+    Point(){}
+
+    Point operator - (Point p) const {
+        return Point(x-p.x, y-p.y);
+    }
+
+    Point operator + (Point p) const {
+        return Point(x+p.x, y+p.y);
+    }
+
+    // 点积
+    int operator * (Point p) const {
+        return x*p.x + y*p.y;
+    }
+
+    // 叉积
+    int operator ^ (Point p) const {
+        return x*p.y - y*p.x;
+    }
+
+    int dis() const {
+        return x*x+y*y;
+    }
+};
+/*
+int operator ^ (Point a, Point b) {
+    return a.x*b.y-a.y*b.x;
+}
+*/
+Point points[M];
+Point lowPoint;
+int st[M], top;
+
+bool cmp(Point p1, Point p2) {
+    p1 = p1-lowPoint;
+    p2 = p2-lowPoint;
+
+    int xmult =p1^p2; // 求叉积
+    if (xmult!=0) {
+        return xmult > 0;
+    }
+
+    return p1.dis()<p2.dis();
+}
+
+void graham(int n) {
+    lowPoint = points[0];
+    for (int j = 0; j < n; ++j) {
+        if(points[j].y<lowPoint.y || (points[j].y==lowPoint.y && points[j].x<lowPoint.x)) lowPoint = points[j];
+    }
+    sort(points, points+n, cmp);
+    top=2;
+    st[0]=0;
+    st[1]=1;
+
+    for (int i = 2; i < n; ++i) {
+        while(top>2 && ((points[st[top-1]]-points[st[top-2]])^(points[i]-points[st[top-1]]))<=0)top--;
+        st[top++]=i;
+    }
+}
+
+int rotate() {
+    st[top]=st[0]; // 将第一点连接后最后，作为最后一条边的终点
+    int up = 1;
+    int ans = -1;
+
+    for (int i = 0; i < top; ++i) {
+        Point bottom = points[st[i+1]] - points[st[i]];
+        // 以i, i+1 线段为底
+        // 查看顶部最高点, 发现下一个点比当前点高，就+1
+        while(abs(bottom^(points[st[up]]-points[st[i]]))<abs(bottom^(points[st[up+1]]-points[st[i]]))) up = (up+1)%top;
+        // 将顶部与底部2个点分别求。 要考虑顶点处于平行线上的情况。这里利用对角顶。
+        ans = max(ans, (points[st[up]]-points[st[i]]).dis());
+        ans = max(ans, (points[st[up+1]]-points[st[i+1]]).dis());
+    }
+
+    return ans;
+}
+
+void solve() {
+    int N;
+    scanf("%d", &N);
+
+    for (int i = 0; i < N; ++i) {
+        scanf("%d%d", &points[i].x, &points[i].y);
+    }
+
+    graham(N);
+    int ans = rotate();
+    printf("%d\n", ans);
+}
+
+
+
+int main(void) {
+    solve();
+    return 0;
+}
+

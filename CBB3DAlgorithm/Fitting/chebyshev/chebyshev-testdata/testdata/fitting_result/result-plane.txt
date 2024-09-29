@@ -1,0 +1,12 @@
+C17 succ
+C18 succ
+C19 succ
+C20 succ
+C21 succ
+C22 succ
+C23 succ
+C24 succ
+C25 succ
+C26 succ
+cntsucc: 10
+cntfail: 0

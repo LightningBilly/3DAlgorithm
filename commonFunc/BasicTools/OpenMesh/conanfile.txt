@@ -2,7 +2,7 @@
 eigen/3.4.0
 glad/0.1.36
 glfw/3.3.8
-openmesh/9.0
+openmesh/10.0
 
 [generators]
 cmake

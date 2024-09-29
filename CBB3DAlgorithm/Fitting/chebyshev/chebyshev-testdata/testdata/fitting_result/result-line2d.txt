@@ -1,0 +1,10 @@
+C01 succ
+C02 succ
+C03 succ
+C04 succ
+C05 succ
+C06 succ
+C07 succ
+C08 succ
+cntsucc: 8
+cntfail: 0

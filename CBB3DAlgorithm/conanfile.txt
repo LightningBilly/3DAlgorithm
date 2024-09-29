@@ -1,5 +1,6 @@
 [requires]
 eigen/3.4.0
+openmesh/10.0
 
 [generators]
 cmake
